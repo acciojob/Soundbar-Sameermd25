@@ -32,6 +32,5 @@ function stopSounds() {
 	const audios = document.getElementsByTagName("audio");
 	for (let audio of audios) {
 		audio.pause();
-		audio.currentTime = 0;
 	}
 }
