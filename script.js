@@ -15,7 +15,7 @@ function  createButton(sound) {
 	const button = document.createElement("button");
     button.innerText = sound;
     button.id=sound;
-    button.className="btn"+(sound===" stop"?"stop":"");
+    button.className="btn"+(sound==="stop"?"stop":"");
     tempDom.appendChild(button);
 
 	button.addEventListener("click", () => {
@@ -24,6 +24,7 @@ function  createButton(sound) {
 		} else {
 			stopSounds(); // Stop others before playing
 			const audio = new Audio(`sounds/${sound}.mp3`);
+			currentlyPlaying.push(audio);
 			audio.play();
 		}
 	});	
