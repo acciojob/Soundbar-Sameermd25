@@ -3,6 +3,8 @@ const container=document.getElementById("container");
 
 const sounds = ["applause", "boo", "gasp", "tada", "victory", "wrong","stop"];
 
+const currentlyPlaying=[];
+
 const tempDom=document.createDocumentFragment();
 for(let sound of sounds) {
     createButton(sound);
@@ -27,10 +29,7 @@ function  createButton(sound) {
 	});	
 }
 function stopSounds() {
-	// This assumes multiple audio elements are not tracked.
-	// If you want to manage currently playing audio, you'd store the instance.
-	const audios = document.getElementsByTagName("audio");
-	for (let audio of audios) {
-		audio.pause();
-	}
+    for (let sound of currentlyPlaying) {
+         sound.pause();
+    }
 }
