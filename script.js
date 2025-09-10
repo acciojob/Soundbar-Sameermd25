@@ -32,5 +32,6 @@ function  createButton(sound) {
 function stopSounds() {
     for (let sound of currentlyPlaying) {
          sound.pause();
+		 sound.currentTime = 0; 
     }
 }
