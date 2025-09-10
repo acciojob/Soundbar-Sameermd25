@@ -14,7 +14,7 @@ body{
 	align-items:center;
 	justify-content:space-evenly;
 }
-.btn{
+.btn,.stop{
 	background-color:#663399;
 	color:#DBDAEB;
 	border:none;

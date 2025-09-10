@@ -15,7 +15,7 @@ function  createButton(sound) {
 	const button = document.createElement("button");
     button.innerText = sound;
     button.id=sound;
-    button.className="btn"+(sound==="stop"?"stop":"");
+    button.className=(sound==="stop"?"stop":"btn");
     tempDom.appendChild(button);
 
 	button.addEventListener("click", () => {
