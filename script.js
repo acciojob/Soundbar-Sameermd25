@@ -6,6 +6,17 @@ const tempDom = document.createDocumentFragment();
 
 for (let sound of sounds) {
     createButton(sound);
+
+    // Skip creating audio element for "stop"
+    if (sound !== "stop") {
+        const audio = document.createElement("audio");
+        audio.src = `sounds/${sound}.mp3`;
+        audio.id = `${sound}-audio`;
+        audio.setAttribute("preload", "auto");
+
+        playList[sound] = audio;
+        tempDom.appendChild(audio); // append to DOM so Cypress can detect it
+    }
 }
 
 container.appendChild(tempDom);
@@ -21,15 +32,10 @@ function createButton(sound) {
         if (sound === "stop") {
             stopSounds();
         } else {
-            stopSounds(); // Stop others before playing
-
-            if (playList.hasOwnProperty(sound)) {
-                playList[sound].play();
-            } else {
-                const audio = new Audio(`sounds/${sound}.mp3`);
-                playList[sound] = audio;
-                audio.play();
-            }
+            stopSounds();
+            const audio = playList[sound];
+            audio.currentTime = 0;
+            audio.play();
         }
     });
 }
@@ -38,6 +44,6 @@ function stopSounds() {
     for (let key in playList) {
         const audio = playList[key];
         audio.pause();
-        audio.currentTime = 0; // reset to beginning
+        audio.currentTime = 0;
     }
 }
